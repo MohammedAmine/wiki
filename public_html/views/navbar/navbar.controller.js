@@ -3,7 +3,7 @@ app.controller("NavBarController",function ($scope,authService){
     $scope.nav='nav Bar ';
     
     $scope.auth={
-        login:'',
+        username:'',
         pwd:''
     }
     
