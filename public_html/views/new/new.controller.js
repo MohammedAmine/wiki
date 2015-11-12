@@ -1,5 +1,5 @@
 var app = angular.module("wikiApp");
-app.controller("NewController",function ($scope,dataService){
+app.controller("NewController",function ($scope,dataService,authService){
     
     $scope.article = {
    
@@ -9,6 +9,8 @@ app.controller("NewController",function ($scope,dataService){
         
     }
     
+     $scope.isAuth = authService.isAuth;
+ 
     $scope.create = function(){
         
         $scope.article.id = Math.random();

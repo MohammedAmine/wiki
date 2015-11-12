@@ -1,4 +1,4 @@
-var app = angular.module("wikiApp", ['ui.router']);
+var app = angular.module("wikiApp", ['ui.router','ngWebsocket']);
 var articles = {};
 app.config(function ($stateProvider, $urlRouterProvider) {
 
@@ -6,9 +6,25 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 
     $stateProvider.state('home', {
         url: '/',
+        resolve: {
+                         getUrl : function(){
+                             
+                            var view = 'navbar';
+                            return 'views/navbar/'+ view +'.html';
+                        }                  
+                },
         views: {
             "navBar@": {
-                templateUrl: 'views/navbar/navbar.html',
+                templateProvider: function ($http,authService) {
+                      var view = 'navbar';
+    
+                      if(authService.isAuth()) view = 'login';                    
+                      var url = 'views/navbar/'+ view +'.html';
+                      return $http.get(url).then(function(response) {
+                            return response.data;
+                         })
+               }
+                ,
                 controller: 'NavBarController'
             },
             "footer@": {
@@ -30,8 +46,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 articles = dataService.getArticles();
             }
         },
+       
         onExit : function(){
-            alert('kan hna');
+           
         }
     }).state('new', {
         parent:'home',
