@@ -1,1 +1,31 @@
+<<<<<<< HEAD
 List
+=======
+
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Liste des wikis</div>
+
+  <!-- Table -->
+  <table class="table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Titre</th>
+            <th>Categorie</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in articles">
+                <td>{{item.id}}</td>
+                <td>{{item.title}}</td>
+                <td>{{item.category}}</td>
+                <td><button class="btn btn-primary" style="margin-right:10px;"> voir</button>
+                    <button class="btn btn-danger"> supprimer</button></td>
+            
+            </tr>
+        </tbody>
+  </table>
+</div>
+>>>>>>> 5deef3539b384e4991290d9fceaeb06ae299de04

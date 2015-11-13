@@ -1,16 +1,46 @@
 <!DOCTYPE html>
+<<<<<<< HEAD:public_html/views/footer_1/new.html
 <!--
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html>
+=======
+<html ng-app="wikiApp">
+>>>>>>> 5deef3539b384e4991290d9fceaeb06ae299de04:public_html/index.html
     <head>
-        <title>TODO supply a title</title>
+        <title>MINI WIKI</title>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <div>TODO write content</div>
-    </body>
+
+        <header ui-view="navBar"></header>
+        <div ui-view="content" class="container">
+            <div ui-view="formulaire" class="col-md-6"></div>
+            <div ui-view="list" class="col-md-6"></div>
+        </div>
+        
+        <footer ui-view="footer"></footer>
+        
+        <script src="node_modules/angular/angular.js" type="text/javascript"></script>
+        <script src="node_modules/ui-router/release/angular-ui-router.js" ></script>
+        <script src="ng-websocket-master/ng-websocket.js"></script>
+   
+        <script src="app.js" type="text/javascript"></script>
+        <script src="views/navbar/navbar.controller.js" type="text/javascript"></script>
+   
+    <script src="views/footer/footer.controller.js" type="text/javascript"></script>
+    <script src="views/content/list/list.controller.js" type="text/javascript"></script>
+    <script src="views/content/formulaire/formulaire.controller.js" type="text/javascript"></script>
+    <script src="views/new/new.controller.js" type="text/javascript"></script>
+    <script src="factories/data.service.js" type="text/javascript"></script>
+    <script src="factories/auth.service.js" type="text/javascript"></script>
+   
+    
+    
+     </body>
+    
+    
 </html>
