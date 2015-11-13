@@ -1,6 +1,35 @@
-var app = angular.module("wikiApp", ['ui.router','ngWebsocket']);
-var articles = {};
-app.config(function ($stateProvider, $urlRouterProvider) {
+var app = angular.module("wikiApp", ['ui.router','ngWebsocket','pascalprecht.translate']);
+
+app.run (function (wsService,$rootScope) {
+    $rootScope.articles = {};
+   // nouvelle liste des articles
+   wsService.ws.$on('$message', function (resp) {
+       if(resp.event){
+           console.log(resp.event);
+           var details = resp.event.split(' ');
+            wsService[details[0]][details[1]](resp.data);
+       }
+       
+   });
+    $rootScope.$on('fill',function(event,data){
+        console.log(data);
+        $rootScope.articles = data;
+        $rootScope.$apply();
+     });
+})
+.config(function ($stateProvider, $urlRouterProvider, $translateProvider) {
+
+
+
+$translateProvider.translations('en', {
+    HEADLINE: 'Hello there, This is my awesome app!',
+    INTRO_TEXT: 'And it has i18n support!'
+  });
+  
+  $translateProvider.translations('fr', {
+    HEADLINE: 'Hello there, This is my awesome app!',
+    INTRO_TEXT: 'And it has i18n support!'
+  });
 
     $urlRouterProvider.otherwise('/');
 
@@ -41,10 +70,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             }
         },
         onEnter: function(dataService){
-            console.log('controller home');
-            if(Object.keys(articles).length == 0 ){
-                articles = dataService.getArticles();
-            }
+           
         },
        
         onExit : function(){

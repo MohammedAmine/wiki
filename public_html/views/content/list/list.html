@@ -14,10 +14,10 @@
           </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="item in articles">
+            <tr ng-repeat="item in $parent.articles">
                 <td>{{item.id}}</td>
                 <td>{{item.title}}</td>
-                <td>{{item.category}}</td>
+                <td>{{item.body}}</td>
                 <td><button class="btn btn-primary" style="margin-right:10px;"> voir</button>
                     <button class="btn btn-danger"> supprimer</button></td>
             
